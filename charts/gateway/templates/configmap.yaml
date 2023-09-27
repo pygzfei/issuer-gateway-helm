@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "gateway.fullname" . }}
+data:
+  config.yaml: |
+Secret: {{ .Values.global.Secret }}
+Gateway:
+  IssuerService: {{ printf "%s-%s.%s.%s" .Release.Name "issuer" .Release.Namespace "svc.cluster.local" }}
+Sync:
+  GrpcClient:
+    Listen: grpc.{{ .Release.Namespace }}.svc.cluster.local
+  Redis: {{ toYaml .Values.global.Sync.Redis | nindent 4 }}
+  Target: {{ .Values.global.Sync.Target }}

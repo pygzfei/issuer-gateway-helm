@@ -1,0 +1,44 @@
+global:
+    Secret: 66d2e42661bc292f8237b4736a423a36
+    JWTSecret: F2NFhljyALXM86x
+
+    Logger:
+        Level: debug # [debug,info,error,severe]
+
+    Sync:
+        #  GRPC
+        #  REDIS
+        #  ETCD
+        #  AMQP
+        Target: GRPC
+        GrpcServer:
+            Port: 9527
+        GrpcClient:
+            Listen: 0.0.0.0:9527 # grpc server addr
+        Redis:
+            Addrs: ['192.167.167.167:6379']
+            User: ''
+            Pass: ''
+            MasterName: ''
+            DB: 0
+
+    Issuer:
+        Name: issuer-api
+        Host: 0.0.0.0
+        Port: 9090
+        Timeout: 20000
+
+        CADirURL: 'https://acme-staging-v02.api.letsencrypt.org/directory' # letsencrypt staging
+        #  CADirURL: "https://acme-v02.api.letsencrypt.org/directory" # letsencrypt prd
+
+        User:
+            Name: anson@test.com
+            Pass: '000000'
+
+        Mysql:
+            Dns: root:123456@tcp(127.0.0.1:3306)/issuer-gateway?charset=utf8mb4&parseTime=true
+            Env: dev
+
+    Gateway:
+        # 证书申请服务
+        IssuerService: http://127.0.0.1

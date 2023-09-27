@@ -1,0 +1,13 @@
+dependencies:  
+    - name: grpc
+      version: 0.1.0
+      appVersion: 0.1.0
+      repository: 'file:///charts/grpc' 
+
+    - name: issuer
+      version: 0.1.0
+      repository: 'file:///charts/issuer'
+
+    - name: gateway
+      version: 0.1.0
+      repository: 'file:///charts/gateway'

@@ -1,0 +1,211 @@
+# Default values for issuer-gateway.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+grpc:
+    image:
+        repository: gofee/issuer-gateway:latest
+        pullPolicy: IfNotPresent
+
+    imagePullSecrets: []
+    nameOverride: ''
+    fullnameOverride: ''
+
+    serviceAccount:
+        # Specifies whether a service account should be created
+        create: false
+        # Annotations to add to the service account
+        annotations: {}
+        name: ''
+
+    podAnnotations: {}
+
+    podSecurityContext:
+        {}
+        # fsGroup: 2000
+
+    securityContext:
+        {}
+        # capabilities:
+        #   drop:
+        #   - ALL
+        # readOnlyRootFilesystem: true
+        # runAsNonRoot: true
+        # runAsUser: 1000
+
+    service:
+        type: ClusterIP
+        port: 80
+
+    resources:
+        {}
+        # limits:
+        #   cpu: 100m
+        #   memory: 128Mi
+        # requests:
+        #   cpu: 100m
+        #   memory: 128Mi
+
+    autoscaling:
+        enabled: false
+        minReplicas: 1
+        maxReplicas: 100
+        targetCPUUtilizationPercentage: 80
+        # targetMemoryUtilizationPercentage: 80
+
+    nodeSelector: {}
+
+    tolerations: []
+
+    affinity: {}
+
+gateway:
+    replicaCount: 2
+
+    image:
+        repository: gofee/issuer-gateway:latest
+        pullPolicy: IfNotPresent
+
+    imagePullSecrets: []
+    nameOverride: ''
+    fullnameOverride: ''
+
+    serviceAccount:
+        # Specifies whether a service account should be created
+        create: false
+        # Annotations to add to the service account
+        annotations: {}
+        name: ''
+
+    podAnnotations: {}
+
+    podSecurityContext:
+        {}
+        # fsGroup: 2000
+
+    securityContext:
+        {}
+        # capabilities:
+        #   drop:
+        #   - ALL
+        # readOnlyRootFilesystem: true
+        # runAsNonRoot: true
+        # runAsUser: 1000
+
+    service:
+        type: ClusterIP
+        port: 80
+
+    resources:
+        {}
+        # limits:
+        #   cpu: 100m
+        #   memory: 128Mi
+        # requests:
+        #   cpu: 100m
+        #   memory: 128Mi
+
+    autoscaling:
+        enabled: false
+        minReplicas: 1
+        maxReplicas: 100
+        targetCPUUtilizationPercentage: 80
+        # targetMemoryUtilizationPercentage: 80
+
+    nodeSelector: {}
+
+    tolerations: []
+
+    affinity: {}
+
+issuer:
+    replicaCount: 1
+
+    image:
+        repository: gofee/issuer-gateway:latest
+        pullPolicy: IfNotPresent
+
+    imagePullSecrets: []
+    nameOverride: ''
+    fullnameOverride: ''
+
+    serviceAccount:
+        # Specifies whether a service account should be created
+        create: false
+        # Annotations to add to the service account
+        annotations: {}
+        name: ''
+
+    podAnnotations: {}
+
+    podSecurityContext:
+        {}
+        # fsGroup: 2000
+
+    securityContext:
+        {}
+        # capabilities:
+        #   drop:
+        #   - ALL
+        # readOnlyRootFilesystem: true
+        # runAsNonRoot: true
+        # runAsUser: 1000
+
+    service:
+        type: ClusterIP
+        port: 80
+
+    resources:
+        {}
+        # limits:
+        #   cpu: 100m
+        #   memory: 128Mi
+        # requests:
+        #   cpu: 100m
+        #   memory: 128Mi
+
+    autoscaling:
+        enabled: false
+        minReplicas: 1
+        maxReplicas: 100
+        targetCPUUtilizationPercentage: 80
+        # targetMemoryUtilizationPercentage: 80
+
+    nodeSelector: {}
+
+    tolerations: []
+
+    affinity: {}
+
+global:
+    Secret: 66d2e42661bc292f8237b4736a423a36
+    JWTSecret: F2NFhljyALXM86x
+
+    Logger:
+        Level: debug # [debug,info,error,severe]
+
+    Sync:
+        #  GRPC
+        #  REDIS
+        #  ETCD
+        #  AMQP
+        Target: GRPC
+        Redis:
+            Addrs: []
+            User: ''
+            Pass: ''
+            MasterName: ''
+            DB: 0
+
+    Issuer:
+        Timeout: 10000
+
+        CADirURL: 'https://acme-staging-v02.api.letsencrypt.org/directory' # letsencrypt staging
+        #  CADirURL: "https://acme-v02.api.letsencrypt.org/directory" # letsencrypt prd
+
+        User:
+            Name: anson@test.com
+            Pass: '000000'
+
+        Mysql:
+            Dns: root:123456@tcp(127.0.0.1:3306)/issuer-gateway?charset=utf8mb4&parseTime=true
+            Env: dev

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: issuer-gateway
+description: A High Performance Gateway with Certificate Issuance and Flexible Proxy
+type: application
+version: 0.1.0
+appVersion: '0.1.0'

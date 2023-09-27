@@ -1,0 +1,14 @@
+{{ if eq .Values.global.Sync.Target "GRPC" }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "grpc.fullname" . }}
+data:
+  config.yaml: |
+Secret: {{ .Values.global.Secret }}
+Logger: {{ toYaml .Values.global.Logger | nindent 2 }}
+Sync:
+  Target: {{ .Values.global.Sync.Target }}
+  GrpcServer:
+    Port: 80
+{{ end }}
