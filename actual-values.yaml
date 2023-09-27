@@ -16,7 +16,7 @@ global:
         GrpcClient:
             Listen: 0.0.0.0:9527 # grpc server addr
         Redis:
-            Addrs: ['192.167.167.167:6379']
+            Addrs: ['127.0.0.1:6379']
             User: ''
             Pass: ''
             MasterName: ''
