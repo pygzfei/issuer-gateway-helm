@@ -3,8 +3,9 @@
 # Declare variables to be passed into your templates.
 grpc:
     image:
-        repository: gofee/issuer-gateway:latest
+        repository: gofee/issuer-gateway
         pullPolicy: IfNotPresent
+        tag: latest
 
     imagePullSecrets: []
     nameOverride: ''
@@ -62,8 +63,9 @@ gateway:
     replicaCount: 2
 
     image:
-        repository: gofee/issuer-gateway:latest
+        repository: gofee/issuer-gateway
         pullPolicy: IfNotPresent
+        tag: latest
 
     imagePullSecrets: []
     nameOverride: ''
@@ -121,8 +123,9 @@ issuer:
     replicaCount: 1
 
     image:
-        repository: gofee/issuer-gateway:latest
+        repository: gofee/issuer-gateway
         pullPolicy: IfNotPresent
+        tag: latest
 
     imagePullSecrets: []
     nameOverride: ''

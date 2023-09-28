@@ -37,13 +37,16 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+            - name: cert_port
+              containerPort: 10086
+              protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: http://127.0.0.1:6060/healthz
               port: http
           readinessProbe:
             httpGet:
-              path: /
+              path: http://127.0.0.1:6060/healthz
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

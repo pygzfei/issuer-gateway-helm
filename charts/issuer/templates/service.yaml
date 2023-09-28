@@ -11,5 +11,9 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    - port: 10086
+      targetPort: cert_port
+      protocol: TCP
+      name: cert_port
   selector:
     {{- include "issuer.selectorLabels" . | nindent 4 }}

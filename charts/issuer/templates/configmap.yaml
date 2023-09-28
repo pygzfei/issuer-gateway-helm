@@ -10,6 +10,9 @@ Issuer:
   Name: issuer-api
   Host: 0.0.0.0
   Port: 80
+  DevServer:
+    Enabled: true
+    Port: 6060
   Timeout: {{ .Values.global.Issuer.Timeout }}
   CADirURL: {{ .Values.global.Issuer.CADirURL }}
   User: {{ toYaml .Values.global.Issuer.User | nindent 4 }}
