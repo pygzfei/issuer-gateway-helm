@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "issuer.fullname" . }}
+  name: issuer-server
 data:
   values.yaml: |
     Secret: {{ .Values.global.Secret }}
@@ -20,6 +20,6 @@ data:
     Logger: {{ toYaml .Values.global.Logger | nindent 6 }}
     Sync:
       GrpcClient:
-        Listen: issuer-gateway-grpc.{{ .Release.Namespace }}.svc.cluster.local:80
+        Listen: grpc-server.{{ .Release.Namespace }}.svc.cluster.local:80
       Redis: {{ toYaml .Values.global.Sync.Redis | nindent 8 }}
       Target: {{ .Values.global.Sync.Target }}

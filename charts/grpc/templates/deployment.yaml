@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "grpc.fullname" . }}
+  name: grpc-server
   labels:
     {{- include "grpc.labels" . | nindent 4 }}
 spec:
@@ -30,7 +30,7 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
         - configMap:
-            name: issuer-gateway-grpc
+            name: grpc-server
           name: grpc-config
       containers:
         - name: {{ .Chart.Name }}

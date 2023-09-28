@@ -2,7 +2,7 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "gateway.fullname" . }}
+  name: gateway-server
   labels:
     {{- include "gateway.labels" . | nindent 4 }}
 spec:

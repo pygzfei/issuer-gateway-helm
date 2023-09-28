@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "gateway.fullname" . }}
+  name: gateway-server
 data:
   values.yaml: |
     Secret: {{ .Values.global.Secret }}
     Logger: {{ toYaml .Values.global.Logger | nindent 6 }}
     Gateway:
-      IssuerService: {{ printf "%s-%s.%s.%s" .Release.Name "issuer" .Release.Namespace "svc.cluster.local" }}
+      IssuerService: http://{{ printf "%s.%s.%s" "issuer-server" .Release.Namespace "svc.cluster.local" }}
     Sync:
       GrpcClient:
-        Listen: issuer-gateway-grpc.{{ .Release.Namespace }}.svc.cluster.local:80
+        Listen: grpc-server.{{ .Release.Namespace }}.svc.cluster.local:80
       Redis: {{ toYaml .Values.global.Sync.Redis | nindent 8 }}
       Target: {{ .Values.global.Sync.Target }}

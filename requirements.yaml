@@ -1,5 +1,5 @@
 dependencies:  
-    - name: grpc
+    - name: grpc-server
       version: 0.1.0
       appVersion: 0.1.0
       repository: 'file:///charts/grpc' 

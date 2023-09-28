@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "issuer.fullname" . }}
+  name: issuer-server
   labels:
     {{- include "issuer.labels" . | nindent 4 }}
 spec:
@@ -29,7 +29,7 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
         - configMap:
-            name: issuer-gateway-issuer-server
+            name: issuer-server
           name: issuer-config
       containers:
         - name: {{ .Chart.Name }}

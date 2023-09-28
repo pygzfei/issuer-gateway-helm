@@ -15,7 +15,7 @@ apiVersion: extensions/v1beta1
 {{- end }}
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: issuer-server
   labels:
     {{- include "issuer.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
