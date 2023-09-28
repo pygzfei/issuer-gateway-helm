@@ -59,7 +59,7 @@ grpc:
 
     affinity: {}
 
-gateway:
+gateway-server:
     replicaCount: 2
 
     image:
@@ -94,7 +94,7 @@ gateway:
         # runAsUser: 1000
 
     service:
-        type: ClusterIP
+        type: LoadBalancer
         port: 80
 
     resources:
@@ -119,7 +119,7 @@ gateway:
 
     affinity: {}
 
-issuer:
+issuer-server:
     replicaCount: 1
 
     image:
@@ -210,5 +210,5 @@ global:
             Pass: '000000'
 
         Mysql:
-            Dns: root:123456@tcp(127.0.0.1:3306)/issuer-gateway?charset=utf8mb4&parseTime=true
+            Dns: root:VSq1TbAhCx@tcp(mysql.test.svc.cluster.local:3306)/issuer-gateway?charset=utf8mb4&parseTime=true
             Env: dev

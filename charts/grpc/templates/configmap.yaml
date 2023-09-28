@@ -4,11 +4,11 @@ kind: ConfigMap
 metadata:
   name: {{ include "grpc.fullname" . }}
 data:
-  config.yaml: |
-Secret: {{ .Values.global.Secret }}
-Logger: {{ toYaml .Values.global.Logger | nindent 2 }}
-Sync:
-  Target: {{ .Values.global.Sync.Target }}
-  GrpcServer:
-    Port: 80
+  values.yaml: |
+    Secret: {{ .Values.global.Secret }}
+    Logger: {{ toYaml .Values.global.Logger | nindent 6 }}
+    Sync:
+      Target: {{ .Values.global.Sync.Target }}
+      GrpcServer:
+        Port: 80
 {{ end }}

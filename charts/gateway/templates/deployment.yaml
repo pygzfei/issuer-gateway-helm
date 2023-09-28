@@ -27,8 +27,21 @@ spec:
       serviceAccountName: {{ include "gateway.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - configMap:
+            name: issuer-gateway-gateway-server
+          name: gateway-config
       containers:
         - name: {{ .Chart.Name }}
+          args:
+            - '--c=/app/conf/values.yaml'
+          command:
+            - /app/ig
+            - gateway
+          volumeMounts:
+            - mountPath: /app/conf/values.yaml
+              name: gateway-config
+              subPath: values.yaml
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -40,14 +53,6 @@ spec:
             - name: https
               containerPort: 443
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

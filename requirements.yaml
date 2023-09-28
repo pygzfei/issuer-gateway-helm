@@ -4,10 +4,10 @@ dependencies:
       appVersion: 0.1.0
       repository: 'file:///charts/grpc' 
 
-    - name: issuer
+    - name: issuer-server
       version: 0.1.0
       repository: 'file:///charts/issuer'
 
-    - name: gateway
+    - name: gateway-server
       version: 0.1.0
       repository: 'file:///charts/gateway'

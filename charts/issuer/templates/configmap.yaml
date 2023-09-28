@@ -3,23 +3,23 @@ kind: ConfigMap
 metadata:
   name: {{ include "issuer.fullname" . }}
 data:
-  config.yaml: |
-Secret: {{ .Values.global.Secret }}
-JWTSecret: {{ .Values.global.JWTSecret }}
-Issuer: 
-  Name: issuer-api
-  Host: 0.0.0.0
-  Port: 80
-  DevServer:
-    Enabled: true
-    Port: 6060
-  Timeout: {{ .Values.global.Issuer.Timeout }}
-  CADirURL: {{ .Values.global.Issuer.CADirURL }}
-  User: {{ toYaml .Values.global.Issuer.User | nindent 4 }}
-  Mysql: {{ toYaml .Values.global.Issuer.Mysql | nindent 4 }}
-Logger: {{ toYaml .Values.global.Logger | nindent 2 }}
-Sync:
-  GrpcClient:
-    Listen: grpc.{{ .Release.Namespace }}.svc.cluster.local
-  Redis: {{ toYaml .Values.global.Sync.Redis | nindent 4 }}
-  Target: {{ .Values.global.Sync.Target }}
+  values.yaml: |
+    Secret: {{ .Values.global.Secret }}
+    JWTSecret: {{ .Values.global.JWTSecret }}
+    Issuer: 
+      Name: issuer-api
+      Host: 0.0.0.0
+      Port: 80
+      DevServer:
+        Enabled: true
+        Port: 6060
+      Timeout: {{ .Values.global.Issuer.Timeout }}
+      CADirURL: {{ .Values.global.Issuer.CADirURL }}
+      User: {{ toYaml .Values.global.Issuer.User | nindent 8 }}
+      Mysql: {{ toYaml .Values.global.Issuer.Mysql | nindent 8 }}
+    Logger: {{ toYaml .Values.global.Logger | nindent 6 }}
+    Sync:
+      GrpcClient:
+        Listen: issuer-gateway-grpc.{{ .Release.Namespace }}.svc.cluster.local:80
+      Redis: {{ toYaml .Values.global.Sync.Redis | nindent 8 }}
+      Target: {{ .Values.global.Sync.Target }}

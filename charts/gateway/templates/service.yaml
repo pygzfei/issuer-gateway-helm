@@ -6,13 +6,15 @@ metadata:
     {{- include "gateway.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
+  externalTrafficPolicy: Local
+  allocateLoadBalancerNodePorts: true
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: http
+      targetPort: {{ .Values.service.port }}
       protocol: TCP
       name: http
     - port: 443
-      targetPort: https
+      targetPort: 443
       protocol: TCP
       name: https
   selector:

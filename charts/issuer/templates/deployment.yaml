@@ -27,8 +27,21 @@ spec:
       serviceAccountName: {{ include "issuer.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - configMap:
+            name: issuer-gateway-issuer-server
+          name: issuer-config
       containers:
         - name: {{ .Chart.Name }}
+          args:
+            - '--c=/app/conf/values.yaml'
+          command:
+            - /app/ig
+            - issuer
+          volumeMounts:
+            - mountPath: /app/conf/values.yaml
+              name: issuer-config
+              subPath: values.yaml
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -37,7 +50,7 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-            - name: cert_port
+            - name: cert-port
               containerPort: 10086
               protocol: TCP
           livenessProbe:
