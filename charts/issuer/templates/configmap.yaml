@@ -10,6 +10,7 @@ data:
       Name: issuer-api
       Host: 0.0.0.0
       Port: 80
+      CheckExpireWithCron: {{ toYaml .Values.global.Issuer.CheckExpireWithCron | nindent 8 }}
       DevServer:
         Enabled: true
         Port: 6060

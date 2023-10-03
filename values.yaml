@@ -202,6 +202,12 @@ global:
     Issuer:
         Timeout: 10000
 
+        CheckExpireWithCron:
+          # Redis
+          # Cron
+          Type: "Cron"
+          Cron: "*/1 * * * *"
+
         CADirURL: 'https://acme-staging-v02.api.letsencrypt.org/directory' # letsencrypt staging
         #  CADirURL: "https://acme-v02.api.letsencrypt.org/directory" # letsencrypt prd
 
