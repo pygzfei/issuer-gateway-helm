@@ -120,7 +120,7 @@ gateway-server:
     affinity: {}
 
 issuer-server:
-    replicaCount: 1
+    replicaCount: 1 # One pod is sufficient for use
 
     image:
         repository: gofee/issuer-gateway
