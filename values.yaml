@@ -220,5 +220,8 @@ global:
             Pass: '000000'
 
         Mysql:
-            Dns: root:VSq1TbAhCx@tcp(mysql.test.svc.cluster.local:3306)/issuer-gateway?charset=utf8mb4&parseTime=true
-            Env: dev
+          User: root
+          Pass: "123456"
+          Host: 127.0.0.1
+          Port: "3306"
+          DB: issuer-gateway
